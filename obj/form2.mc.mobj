@@ -1,0 +1,48 @@
+our ($_class_cmeta, $m, $_m_buffer, $_interp);
+BEGIN { 
+local $_interp = Mason::Interp->current_load_interp;
+$_interp->component_moose_class->import;
+$_interp->component_import_class->import;
+}
+*m = \$Mason::Request::current_request;
+*_m_buffer = \$Mason::Request::current_buffer;
+sub _inner { inner() }
+method _set_class_cmeta ($interp) {
+$_class_cmeta = $interp->component_class_meta_class->new(
+'class' => CLASS,
+'dir_path' => '/',
+'interp' => $interp,
+'is_top_level' => '1',
+'object_file' => __FILE__,
+'path' => '/form2.mc',
+'source_file' => '/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc',
+);
+}
+sub _unset_class_cmeta { undef $_class_cmeta }
+sub _class_cmeta { $_class_cmeta }
+#line 2 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+has 'form' => ();
+method main  {
+#line 4 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+$$_m_buffer .= ' 
+<h1>Second sample Data::MuForm form</h1>';
+#line 10 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+ foreach my $field ( @{ $self->form ->fields()} ) {
+$$_m_buffer .= '    <hr/>
+    ';
+#line 12 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+for (scalar($field->render_label)) { $$_m_buffer .= $_ if defined }
+#line 12 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+$$_m_buffer .= '
+    ';
+#line 13 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+for (scalar($field->render_element)) { $$_m_buffer .= $_ if defined }
+#line 13 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+$$_m_buffer .= '
+    <hr/>
+';
+#line 15 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form2.mc"
+ }
+
+;return;
+}

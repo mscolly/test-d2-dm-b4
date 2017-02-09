@@ -1,0 +1,49 @@
+our ($_class_cmeta, $m, $_m_buffer, $_interp);
+BEGIN { 
+local $_interp = Mason::Interp->current_load_interp;
+$_interp->component_moose_class->import;
+$_interp->component_import_class->import;
+}
+*m = \$Mason::Request::current_request;
+*_m_buffer = \$Mason::Request::current_buffer;
+sub _inner { inner() }
+method _set_class_cmeta ($interp) {
+$_class_cmeta = $interp->component_class_meta_class->new(
+'class' => CLASS,
+'dir_path' => '/user',
+'interp' => $interp,
+'is_top_level' => '1',
+'object_file' => __FILE__,
+'path' => '/user/form4.mc',
+'source_file' => '/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/user/form4.mc',
+);
+}
+sub _unset_class_cmeta { undef $_class_cmeta }
+sub _class_cmeta { $_class_cmeta }
+#line 2 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/user/form4.mc"
+has 'form' => ();
+method main  {
+#line 5 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/user/form4.mc"
+$m->comp(   '/lib/form/render.mi', form =>  $self->form    
+); #line 5 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/user/form4.mc"
+$$_m_buffer .= '
+';
+
+;return;
+}
+method subtitle  {
+#line 11 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/user/form4.mc"
+$$_m_buffer .= '
+    4th sample
+';
+
+;return;
+}
+method title  {
+#line 7 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/user/form4.mc"
+$$_m_buffer .= '
+    Data::MuForm form
+';
+
+;return;
+}

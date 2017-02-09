@@ -1,0 +1,37 @@
+our ($_class_cmeta, $m, $_m_buffer, $_interp);
+BEGIN { 
+local $_interp = Mason::Interp->current_load_interp;
+$_interp->component_moose_class->import;
+$_interp->component_import_class->import;
+}
+*m = \$Mason::Request::current_request;
+*_m_buffer = \$Mason::Request::current_buffer;
+sub _inner { inner() }
+method _set_class_cmeta ($interp) {
+$_class_cmeta = $interp->component_class_meta_class->new(
+'class' => CLASS,
+'dir_path' => '/',
+'interp' => $interp,
+'is_top_level' => '1',
+'object_file' => __FILE__,
+'path' => '/form1.mc',
+'source_file' => '/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form1.mc',
+);
+}
+sub _unset_class_cmeta { undef $_class_cmeta }
+sub _class_cmeta { $_class_cmeta }
+#line 2 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form1.mc"
+has 'form' => ();
+method main  {
+#line 4 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form1.mc"
+$$_m_buffer .= ' 
+<h1>First sample Data::MuForm form</h1>
+';
+#line 6 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form1.mc"
+for (scalar( $self->form ->render)) { $$_m_buffer .= $_ if defined }
+#line 6 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/form1.mc"
+$$_m_buffer .= '
+';
+
+;return;
+}

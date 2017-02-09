@@ -1,0 +1,78 @@
+our ($_class_cmeta, $m, $_m_buffer, $_interp);
+BEGIN { 
+local $_interp = Mason::Interp->current_load_interp;
+$_interp->component_moose_class->import;
+$_interp->component_import_class->import;
+}
+*m = \$Mason::Request::current_request;
+*_m_buffer = \$Mason::Request::current_buffer;
+sub _inner { inner() }
+method _set_class_cmeta ($interp) {
+$_class_cmeta = $interp->component_class_meta_class->new(
+'class' => CLASS,
+'dir_path' => '/lib/form',
+'interp' => $interp,
+'is_top_level' => '0',
+'object_file' => __FILE__,
+'path' => '/lib/form/render.mi',
+'source_file' => '/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi',
+);
+}
+sub _unset_class_cmeta { undef $_class_cmeta }
+sub _class_cmeta { $_class_cmeta }
+#line 2 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+has 'form' => ();
+method main  {
+#line 5 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+ # <%  $self->form ->render %>
+ my $fields =  $self->form ->fields;
+$$_m_buffer .= '<div class="card">
+<div class="card-block">
+<form>
+';
+#line 10 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+ foreach my $field ( @{ $fields } ) {
+$$_m_buffer .= '    <div class="form-group row">
+        <label class="col-2 col-form-label" for="';
+#line 12 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+for (scalar($field->id)) { $$_m_buffer .= $_ if defined }
+#line 12 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+$$_m_buffer .= '">
+            ';
+#line 13 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+for (scalar($field->label)) { $$_m_buffer .= $_ if defined }
+#line 13 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+$$_m_buffer .= ':
+        </label>
+        <div class="col-10">
+            ';
+#line 21 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+for (scalar($field->render_element(
+                {
+                     class => 'form-control',
+                     'aria-describedby' => $field->id . 'HelpBlock',
+                }
+            ))) { $$_m_buffer .= $_ if defined }
+#line 21 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+$$_m_buffer .= '
+            <p id="';
+#line 22 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+for (scalar($field->id)) { $$_m_buffer .= $_ if defined }
+#line 22 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+$$_m_buffer .= 'HelpBlock" class="form-text text-muted">
+                Your password must be 8-20 characters long,
+                contain letters and numbers, and must not contain spaces,
+                special characters, or emoji.
+            </p>
+        </div>
+    </div>
+';
+#line 29 "/Users/m_scoltock/Data_MuForm/MyWeb_Mason-App/views/lib/form/render.mi"
+ }
+$$_m_buffer .= '</form>
+</div>
+</div>
+';
+
+;return;
+}
