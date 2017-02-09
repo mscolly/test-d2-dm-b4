@@ -5,5 +5,5 @@ use warnings;
 use FindBin;
 use lib "$FindBin::Bin/../lib";
 
-use MyWeb_Mason::App;
-MyWeb_Mason::App->to_app;
+use MyApp::controller;
+MyApp::controller->to_app;

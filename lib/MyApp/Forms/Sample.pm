@@ -1,4 +1,4 @@
-package MyWeb_Mason::Forms::Sample;
+package MyApp::Forms::Sample;
 use Moo;
 use Data::MuForm::Meta;
 extends 'Data::MuForm';

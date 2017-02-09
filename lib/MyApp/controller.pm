@@ -1,26 +1,26 @@
-package MyWeb_Mason::App;
+package MyApp::controller;
 use Dancer2;
 
 our $VERSION = '0.1';
 
-use  MyWeb_Mason::Forms::Sample;
+use  MyApp::Forms::Sample;
 
 get '/foo' => sub {
     template foo => { title => 'bar' };
 };
 
 get '/form1' => sub {
-    my $form = MyWeb_Mason::Forms::Sample->new;
+    my $form = MyApp::Forms::Sample->new;
     template form1 => { form => $form };
 };
 
 get '/form2' => sub {
-    my $form = MyWeb_Mason::Forms::Sample->new;
+    my $form = MyApp::Forms::Sample->new;
     template form2 => { form => $form };
 };
 
 get '/form3' => sub {
-    my $form = MyWeb_Mason::Forms::Sample->new;
+    my $form = MyApp::Forms::Sample->new;
     $form->process(
         submitted => 0,
         init_values => {
@@ -33,7 +33,7 @@ get '/form3' => sub {
 };
 
 get '/form4' => sub {
-    my $form = MyWeb_Mason::Forms::Sample->new;
+    my $form = MyApp::Forms::Sample->new;
     $form->process(
         submitted => 0,
         init_values => {
